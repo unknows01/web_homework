@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .contan{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .game{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            height: 300px;
+            width: 300px;
+        }
+
+        .box{
+            border: solid 5px;
+            height: 100px;
+            width: 100px;
+            font-size: 50px;
+        }
+
+        .box:hover {
+            background-color: lightblue;
+        }
+
+    </style>
+</head>
+
+<body>
+    <main class="contan">
+        <div class="game">
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+            <button class="box"></button>
+        </div>
+    </main>
+
+    <script>
+        const boxes = document.querySelectorAll('.box');
+        const winPatterns = [
+            [0, 1, 2],
+            [0, 3, 6],
+            [0, 4, 8],
+            [1, 4, 7],
+            [2, 5, 8],
+            [2, 4, 6],
+            [3, 4, 5],
+            [6, 7, 8]
+        ];
+
+        boxes.forEach((box) => {
+            box.addEventListener('click', function () {
+                if (box.innerText !== "") return;
+
+                box.innerText = 'O';
+                box.style.color = 'green';
+                box.disabled = true;
+
+                if (checkWinner()) return;
+                aiMove();
+            });
+        });
+
+        const aiMove = () => {
+            const emptyBoxes = [...boxes].filter(box => box.innerText === "");
+            if (emptyBoxes.length === 0) return;
+            
+            const randomBox = emptyBoxes[Math.floor(Math.random() * emptyBoxes.length)];
+
+            randomBox.innerText = 'X';
+            randomBox.style.color = 'black';
+            randomBox.disabled = true;
+
+            checkWinner();
+        };
+
+        const checkWinner = () => {
+            for (let pattern of winPatterns) {
+                let pos1 = boxes[pattern[0]].innerText;
+                let pos2 = boxes[pattern[1]].innerText;
+                let pos3 = boxes[pattern[2]].innerText;
+
+                if (pos1 !== "" && pos1 === pos2 && pos2 === pos3) {
+                    showWinner(pos1);
+                    disableBoxes();
+                    return true;
+                }
+            }
+
+            let filledBoxes = [...boxes].every(box => box.innerText !== "");
+            if (filledBoxes) {
+                alert("It's a draw!");
+            }
+            return false;
+        };
+
+        const showWinner = (winner) => {
+            setTimeout(() => {
+                alert(`Player ${winner} wins!`);
+            }, 100);
+        };
+
+        const disableBoxes = () => {
+            boxes.forEach((box) => box.disabled = true);
+        };
+
+        const enableBoxes = () => {
+            boxes.forEach((box) => {
+                box.disabled = false;
+                box.innerText = "";
+            });
+        };
+    </script>
+    
+</body>
+</html>
