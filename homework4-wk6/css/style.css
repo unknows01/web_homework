@@ -1,0 +1,82 @@
+.logo {
+    margin: 50px 50px;
+    height: 50px;
+    position: absolute;
+}
+
+body{
+    /* width: 100%; */
+    margin: 0px 0px;
+}
+
+header{
+    /* display: flex; */
+    height: 100vh;
+    clip-path: polygon(1% 1%, 99% 1%, 99% 85%, 1% 95%);
+    background-image: linear-gradient(166deg,rgba(20, 149, 54, 0.807) 0%, rgba(58, 186, 120, 0.5) 50%, rgba(45, 224, 200, 0.653)) ,url("../img/background.jpeg");
+}
+
+.main {
+    color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    letter-spacing: 40px;
+    font-size: 150px;
+    position: relative;
+    display: block;
+    text-align: center;
+    padding-top: 150px;
+    animation: slideright 2s ease;
+}
+
+.sub {
+    color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 20px;
+    position: relative;
+    font-size: 45px;
+    display: block;
+    text-align: center;
+    animation: slideleft 2s ease;
+}
+
+@keyframes slideleft{
+    0%{left : 300px;color: rgba(255, 255, 255, 0);}
+    70%{left: -5px;}
+    100%{left: 0px;color:  rgba(255, 255, 255, 1);}
+
+}
+
+@keyframes slideright{
+    0%{right : 300px;color: rgba(255, 255, 255, 0);}
+    50%{right: -10px;}
+    70%{right: 0px;color:  rgba(255, 255, 255, 1);}
+
+}
+
+.btn {
+    background-color: white;
+    text-decoration: none;
+    border-radius: 300px;
+    display: block;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 8px;
+    width: 350px;
+    height: 50px;
+}
+
+.btn-white {
+    font-size: 30px;
+    color: black;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing:normal;
+}
+
+.btn:hover{
+    transform: translateY(-10px);
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.452);
+
+}
